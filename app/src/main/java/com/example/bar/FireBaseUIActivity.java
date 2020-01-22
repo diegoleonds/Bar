@@ -2,6 +2,8 @@ package com.example.bar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,7 +27,8 @@ public class FireBaseUIActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_firebase);
-        createSignInIntent();
+        themeAndLogo();
+
     }
 
     public void createSignInIntent() {
@@ -56,7 +59,7 @@ public class FireBaseUIActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 // Successfully signed in
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                // ...
+                Log.e("USUARIO",user.toString());
             } else {
                 // Sign in failed. If response is null the user canceled the
                 // sign-in flow using the back button. Otherwise check
@@ -100,8 +103,8 @@ public class FireBaseUIActivity extends AppCompatActivity {
                 AuthUI.getInstance()
                         .createSignInIntentBuilder()
                         .setAvailableProviders(providers)
-                        //.setLogo(R.drawable.my_great_logo)      // Set logo drawable
-                        //.setTheme(R.style.MySuperAppTheme)      // Set theme
+                        //.setLogo(R.drawable.)      // Set logo drawable
+                        .setTheme(R.style.LoginTheme)      // Set theme
                         .build(),
                 RC_SIGN_IN);
         // [END auth_fui_theme_logo]
@@ -120,6 +123,10 @@ public class FireBaseUIActivity extends AppCompatActivity {
                         .build(),
                 RC_SIGN_IN);
         // [END auth_fui_pp_tos]
+    }
+
+    public void click(View view){
+        createSignInIntent();
     }
 }
 
