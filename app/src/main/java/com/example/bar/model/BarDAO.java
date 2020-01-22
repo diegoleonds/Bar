@@ -55,5 +55,9 @@ public class BarDAO {
         return bar;
     }
 
-    //public void excluir
+    public void excluir(Bar b) {
+
+        dados.delete("bar", "id = ?", new String[]{b.getId().toString()});
+
+    }
 }
