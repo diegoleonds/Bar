@@ -28,7 +28,7 @@ public class FireBaseUIActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
         preferences = getSharedPreferences("user_preferences", MODE_PRIVATE);
         if (preferences.contains("logado")) {
             startMain();
@@ -101,6 +101,7 @@ public class FireBaseUIActivity extends AppCompatActivity {
     public void startMain(){
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
+        finish();
     }
 }
 
