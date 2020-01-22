@@ -7,7 +7,7 @@
 
 
     <TextView
-        android:id="@+id/nome_bar"
+        android:id="@+id/nome"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
