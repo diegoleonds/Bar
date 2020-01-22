@@ -31,8 +31,7 @@ public class FireBaseUIActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         preferences = getSharedPreferences("user_preferences", MODE_PRIVATE);
         if (preferences.contains("logado")) {
-            Intent i = new Intent(this, MainActivity.class);
-            startActivity(i);
+            startMain();
         } else {
             createSignInIntent();
         }
@@ -67,6 +66,7 @@ public class FireBaseUIActivity extends AppCompatActivity {
                 // Successfully signed in
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 adicionarPreferenceLogado(preferences);
+                startMain();
 
             } else {
                 // Sign in failed. If response is null the user canceled the
@@ -76,7 +76,7 @@ public class FireBaseUIActivity extends AppCompatActivity {
             }
         }
     }
-    // [END auth_fui_result]
+
 
     public void signOut() {
         // [START auth_fui_signout]
@@ -92,14 +92,15 @@ public class FireBaseUIActivity extends AppCompatActivity {
         editor.commit();
     }
 
-    public void click(View view) {
-        createSignInIntent();
-    }
-
     private void adicionarPreferenceLogado(SharedPreferences preferences) {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean("logado", true);
         editor.commit();
+    }
+
+    public void startMain(){
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
     }
 }
 
