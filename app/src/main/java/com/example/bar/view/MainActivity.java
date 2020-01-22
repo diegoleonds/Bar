@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.bar.R;
 import com.example.bar.controller.AdapterBares;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         adapterBares = new AdapterBares(this, controller.clicouNoBar());
 
         rv.setAdapter(adapterBares);
+        Log.e("aaaaaaaaaa", adapterBares.toString());
         rv.setLayoutManager(new LinearLayoutManager(this));
     }
 }

@@ -49,7 +49,6 @@ public class AdapterBares extends RecyclerView.Adapter<AdapterBares.BaresViewHol
         if (holder != null) {
 
             if (bares.size() > 0){
-
                 holder.tv.setText(bares.get(position).getNome());
             }
         }
