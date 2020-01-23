@@ -1,34 +1,66 @@
 package com.example.bar.model;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BarDAO {
 
-    private ArrayList<String> bares = new ArrayList<>();
-
+    private Conexao conexao;
+    private SQLiteDatabase dados;
     private Context context;
 
-    public BarDAO(ArrayList<String> bares, Context context) {
-        this.bares = bares;
+    public BarDAO(Context context) {
+
         this.context = context;
+        this.conexao = new Conexao(context);
+        dados = conexao.getWritableDatabase();
     }
 
-    public ArrayList<String> getBares() {
-        return bares;
+    public long inserirBar(Bar bar){
+
+        ContentValues values = new ContentValues();
+        values.put ("nome", bar.getNome());
+        values.put("endereco", bar.getEndereco());
+        values.put("classificacao", bar.getClassificacao());
+        return dados.insert("bar", null, values);
     }
 
-    public void setBares(ArrayList<String> bares) {
-        this.bares = bares;
+    public void atualizarBar (Bar bar){
+        int id = bar.getId();
+        ContentValues values = new ContentValues();
+        values.put("nome", bar.getNome());
+        values.put("endereco", bar.getEndereco());
+        values.put("classificacao", bar.getClassificacao());
+        dados.update("bar", values, "id = ?", new
+                String[]{bar.getId().toString()});
     }
 
-    public Context getContext() {
-        return context;
+    public List<Bar> meDAOsBar () {
+
+        List<Bar> bar = new ArrayList<>();
+
+        Cursor cursor = dados.query("bar", new String[]{"id", "nome", "endereco","classificacao"},
+                null, null, null, null, null);
+
+        while (cursor.moveToNext()) {
+            Bar b = new Bar();
+            b.setId(cursor.getInt(0));
+            b.setNome(cursor.getString(1));
+            b.setEndereco(cursor.getString(2));
+            b.setClassificacao(cursor.getDouble(3));
+            bar.add(b);
+        }
+        return bar;
     }
 
-    public void setContext(Context context) {
-        this.context = context;
+    public void excluir(Bar b) {
+
+        dados.delete("bar", "id = ?", new String[]{b.getId().toString()});
+
     }
-    
 }
