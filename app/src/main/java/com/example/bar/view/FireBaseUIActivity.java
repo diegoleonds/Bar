@@ -1,4 +1,4 @@
-package com.example.bar;
+package com.example.bar.view;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
