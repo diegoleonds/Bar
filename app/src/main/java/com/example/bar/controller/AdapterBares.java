@@ -13,6 +13,7 @@ import com.example.bar.R;
 import com.example.bar.model.Bar;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AdapterBares extends RecyclerView.Adapter<AdapterBares.BaresViewHolder>{
 
@@ -20,16 +21,17 @@ public class AdapterBares extends RecyclerView.Adapter<AdapterBares.BaresViewHol
     private Context c;
     private Click click;
 
-    public AdapterBares(Context c, Click click) {
 
-        bares = new ArrayList<Bar>();
+
+    public AdapterBares(Context c, Click click ) {
+
+        this.bares = new ArrayList<Bar>();
+
         this.c = c;
 
         this.click = click;
 
-        Bar bar = new Bar();
-        bar.setNome("Bar do Juka");
-        bares.add(bar);
+
     }
 
     @NonNull

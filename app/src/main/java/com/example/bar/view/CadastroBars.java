@@ -1,4 +1,4 @@
-package com.example.bar;
+package com.example.bar.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bar.R;
 import com.example.bar.model.Bar;
 import com.example.bar.model.BarDAO;
 
@@ -42,6 +43,8 @@ public class CadastroBars extends AppCompatActivity {
                 cadastraBar();
                 Toast.makeText(CadastroBars.this,""+nomeBar.getText().toString()+" cadastrado",Toast.LENGTH_SHORT).show();
                 Toast.makeText(CadastroBars.this, String.valueOf(classifica.getRating()),Toast.LENGTH_SHORT).show();
+
+                finish();
             }
 
         });
