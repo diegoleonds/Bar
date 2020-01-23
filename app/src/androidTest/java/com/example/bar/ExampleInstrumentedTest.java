@@ -43,8 +43,8 @@ public class ExampleInstrumentedTest {
 
         ArrayList<Bar> bar = new ArrayList<Bar>();
 
-        bar.add(new Bar("Bar do Juka", "rua 7  de setembro, bairro Itoupavazinha, Blumenau, SC,"));
-        bar.add(new Bar("Bar do Jose", "rua Sem volta, bairro Moinho, Luiz Alves, ES"));
+        //bar.add(new Bar("Bar do Juka", "rua 7  de setembro, bairro Itoupavazinha, Blumenau, SC,"));
+       //bar.add(new Bar("Bar do Jose", "rua Sem volta, bairro Moinho, Luiz Alves, ES"));
 
         return bar;
     }

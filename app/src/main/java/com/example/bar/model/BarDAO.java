@@ -26,6 +26,7 @@ public class BarDAO {
         ContentValues values = new ContentValues();
         values.put ("nome", bar.getNome());
         values.put("endereco", bar.getEndereco());
+        values.put("classificacao", bar.getClassificacao());
         return dados.insert("bar", null, values);
     }
 
@@ -34,6 +35,7 @@ public class BarDAO {
         ContentValues values = new ContentValues();
         values.put("nome", bar.getNome());
         values.put("endereco", bar.getEndereco());
+        values.put("classificacao", bar.getClassificacao());
         dados.update("bar", values, "id = ?", new
                 String[]{bar.getId().toString()});
     }
@@ -42,7 +44,7 @@ public class BarDAO {
 
         List<Bar> bar = new ArrayList<>();
 
-        Cursor cursor = dados.query("bar", new String[]{"id", "nome", "endereco"},
+        Cursor cursor = dados.query("bar", new String[]{"id", "nome", "endereco","classificacao"},
                 null, null, null, null, null);
 
         while (cursor.moveToNext()) {
@@ -50,6 +52,7 @@ public class BarDAO {
             b.setId(cursor.getInt(0));
             b.setNome(cursor.getString(1));
             b.setEndereco(cursor.getString(2));
+            b.setClassificacao(cursor.getDouble(3));
             bar.add(b);
         }
         return bar;
