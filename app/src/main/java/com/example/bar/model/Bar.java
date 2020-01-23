@@ -4,8 +4,38 @@ public class Bar {
 
     private String nome;
     private String endereco;
-    private String endereçoImagem;
+    private String enderecoImagem;
     private Integer id;
+    private Double classificacao;
+
+    public Bar(String enderecoImagem) {
+        this.enderecoImagem = enderecoImagem;
+
+    }
+
+    public Bar(String nome, String endereco, Double classificacao) {
+        this.nome = nome;
+        this.endereco = endereco;
+        this.classificacao = classificacao;
+    }
+
+    public Bar() {
+
+    }
+
+    public Float getClassificacaoAsFloat()  {
+        return classificacao.floatValue();
+    }
+    public void setClassificacaoAsFloat(Float a) {
+        this.classificacao = a.doubleValue();
+
+    }
+    public Double getClassificacao()  {
+        return classificacao;
+    }
+    public void setClassificacao(Double classificacao) {
+        this.classificacao = classificacao;
+    }
 
     public String getNome() {
         return nome;
@@ -23,12 +53,12 @@ public class Bar {
         this.endereco = endereco;
     }
 
-    public String getEndereçoImagem() {
-        return endereçoImagem;
+    public String getEnderecoImagem() {
+        return enderecoImagem;
     }
 
-    public void setEndereçoImagem(String endereçoImagem) {
-        this.endereçoImagem = endereçoImagem;
+    public void setEnderecoImagem(String enderecoImagem) {
+        this.enderecoImagem = enderecoImagem;
     }
 
     public Integer getId() {
@@ -39,14 +69,7 @@ public class Bar {
         this.id = id;
     }
 
-    public Bar(String nome, String endereco, String endereçoImagem, Integer id) {
-        this.nome = nome;
-        this.endereco = endereco;
-        this.endereçoImagem = endereçoImagem;
-        this.id = id;
-    }
 
-    public Bar() {
 
-    }
+
 }

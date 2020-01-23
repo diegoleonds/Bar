@@ -31,7 +31,8 @@ public class Conexao extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE bar" +
                 "(id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "nome VARCHAR(100)," +
-                "endereco VARCHAR(150))");
+                "endereco VARCHAR(150),"+
+                "classificacao DOUBLE(5))");
 
         db.execSQL("CREATE TABLE produto" +
                 "(id INTEGER PRIMARY KEY AUTOINCREMENT," +
