@@ -54,8 +54,6 @@ public class Conexao extends SQLiteOpenHelper {
          * Inserindo produtos na tabela produto,
          */
 
-        SQLiteDatabase database = getWritableDatabase();
-
         ContentValues values = new ContentValues();
         values.put("nome", "Pepsi");
         values.put("idImagem", R.drawable.pepsi);
@@ -76,11 +74,11 @@ public class Conexao extends SQLiteOpenHelper {
         values4.put("nome", "Budweiser");
         values4.put("idImagem", R.drawable.budweiser);
 
-        database.insert("produto", null, values);
-        database.insert("produto", null, values1);
-        database.insert("produto", null, values2);
-        database.insert("produto", null, values3);
-        database.insert("produto", null, values4);
+        db.insert("produto", null, values);
+        db.insert("produto", null, values1);
+        db.insert("produto", null, values2);
+        db.insert("produto", null, values3);
+        db.insert("produto", null, values4);
     }
 
     /**
