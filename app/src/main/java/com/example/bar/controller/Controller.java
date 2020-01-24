@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Adapter;
 import com.example.bar.model.Bar;
+import com.example.bar.model.Item;
 import com.example.bar.model.BarDAO;
 import com.example.bar.model.Model;
 import com.example.bar.view.BarActivity;
@@ -66,6 +67,16 @@ public class Controller {
                 context.startActivity(i);
             }
         };
+    }
+
+    public void insertItem(Item item){
+
+        model.insertItem(item);
+    }
+
+    public void listarItensDobar(String fkBar, AdapterProdutos adapterProdutos){
+
+
     }
 
     public Click clicouNoProduto(){

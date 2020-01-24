@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bar.R;
+import com.example.bar.model.Model;
 import com.example.bar.model.Produto;
 
 import java.util.ArrayList;
@@ -19,12 +20,14 @@ public class AdapterProdutos extends RecyclerView.Adapter<AdapterProdutos.Produt
 
     private ArrayList<Produto> produtos;
     private Context context;
+    private String fkBar;
 
-    public AdapterProdutos(Context context){
+    public AdapterProdutos(Context context, String fkBar){
 
         this.context = context;
 
         produtos = new ArrayList<Produto>();
+        this.fkBar = fkBar;
     }
 
     @NonNull
@@ -44,7 +47,11 @@ public class AdapterProdutos extends RecyclerView.Adapter<AdapterProdutos.Produt
         Produto aux = produtos.get(position);
 
         holder.nome.setText(aux.getNome());
-        holder.foto.setImageResource(R.drawable.pepsi);
+
+        holder.preco.setText(Model.getValorFormatado(context, fkBar,
+                String.valueOf(aux.getId())));
+
+        holder.foto.setImageResource(aux.getIdImagem());
     }
 
     ArrayList<Produto> getProdutos() { return this.produtos; }
@@ -53,6 +60,8 @@ public class AdapterProdutos extends RecyclerView.Adapter<AdapterProdutos.Produt
     public int getItemCount() {
         return produtos.size();
     }
+
+    public void setProdutos(){ }
 
     public class ProdutosViewHolder extends RecyclerView.ViewHolder {
 
