@@ -43,7 +43,6 @@ public class Controller {
         bars.notifyDataSetChanged();
     }
 
-
     public void abrirCadastro(){
 
         Intent intent = new Intent(context, CadastroBars.class);
