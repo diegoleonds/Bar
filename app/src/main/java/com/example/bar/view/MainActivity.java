@@ -28,12 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         rv = findViewById(R.id.rv_bares);
         controller = new Controller(this);
-        adapterBares = new AdapterBares(this, controller.clicouNoBar());
 
-        rv.setAdapter(adapterBares);
-        Log.e("aaaaaaaaaa", adapterBares.toString());
-        rv.setLayoutManager(new LinearLayoutManager(this));
-        abrir();
     }
 
     public void abrir(){
@@ -50,7 +45,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+        adapterBares = new AdapterBares(this, controller.clicouNoBar());
+
+        rv.setAdapter(adapterBares);
+        Log.e("aaaaaaaaaa", adapterBares.toString());
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        abrir();
         controller.getBares(adapterBares);
+
     }
 
 }

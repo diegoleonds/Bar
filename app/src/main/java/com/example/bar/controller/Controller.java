@@ -5,9 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Adapter;
 
+import com.example.bar.model.Bar;
 import com.example.bar.model.BarDAO;
 import com.example.bar.view.BarActivity;
 import com.example.bar.view.CadastroBars;
+
+import java.util.ArrayList;
 
 public class Controller {
 
@@ -21,9 +24,13 @@ public class Controller {
     public void getBares(AdapterBares bars){
 
         BarDAO barsDao = new BarDAO(context);
-        bars.getBares().addAll(barsDao.meDAOsBares());
+
+        ArrayList<Bar> aux = new ArrayList<Bar>();
+        aux.addAll(barsDao.meDAOsBares());
+        bars.setBares(aux);
         bars.notifyDataSetChanged();
     }
+
 
     public void abrirCadastro(){
 

@@ -26,7 +26,7 @@ public class BarActivity extends AppCompatActivity {
         Bar bar = barDAO.meDAOBar(id);
 
         setTitle(bar.getNome());
-        
+
     }
 
 }

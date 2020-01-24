@@ -82,6 +82,10 @@ public class AdapterBares extends RecyclerView.Adapter<AdapterBares.BaresViewHol
         return bares;
     }
 
+    public void setBares(ArrayList<Bar> bares) {
+        this.bares = bares;
+    }
+
     public class BaresViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView tv;

@@ -41,8 +41,7 @@ public class CadastroBars extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cadastraBar();
-                Toast.makeText(CadastroBars.this,""+nomeBar.getText().toString()+" cadastrado",Toast.LENGTH_SHORT).show();
-                Toast.makeText(CadastroBars.this, String.valueOf(classifica.getRating()),Toast.LENGTH_SHORT).show();
+                Toast.makeText(CadastroBars.this,"0 "+nomeBar.getText().toString()+" foi cadastrado",Toast.LENGTH_SHORT).show();
 
                 finish();
             }
