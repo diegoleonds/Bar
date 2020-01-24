@@ -30,8 +30,6 @@ public class AdapterBares extends RecyclerView.Adapter<AdapterBares.BaresViewHol
         this.c = c;
 
         this.click = click;
-
-
     }
 
     @NonNull
