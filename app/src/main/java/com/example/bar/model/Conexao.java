@@ -1,8 +1,11 @@
 package com.example.bar.model;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.example.bar.R;
 
 public class Conexao extends SQLiteOpenHelper {
 
@@ -31,11 +34,13 @@ public class Conexao extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE bar" +
                 "(id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "nome VARCHAR(100)," +
-                "endereco VARCHAR(150))");
+                "endereco VARCHAR(150),"+
+                "classificacao DOUBLE(5))");
 
         db.execSQL("CREATE TABLE produto" +
                 "(id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "nome VARCHAR(80))");
+                "nome VARCHAR(80)," +
+                "idImagem INTEGER)");
 
         db.execSQL("CREATE TABLE valores (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -44,6 +49,38 @@ public class Conexao extends SQLiteOpenHelper {
                 "preco REAL," +
                 "FOREIGN KEY(fkProduto) REFERENCES produto," +
                 "FOREIGN KEY(fkBar) REFERENCES bar)");
+
+        /**
+         * Inserindo produtos na tabela produto,
+         */
+
+        SQLiteDatabase database = getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("nome", "Pepsi");
+        values.put("idImagem", R.drawable.pepsi);
+
+        ContentValues values1 = new ContentValues();
+        values1.put("nome", "Guarana");
+        values1.put("idImagem", R.drawable.guarana);
+
+        ContentValues values2 = new ContentValues();
+        values2.put("nome", "Sukita");
+        values2.put("idImagem", R.drawable.sukita);
+
+        ContentValues values3 = new ContentValues();
+        values3.put("nome", "Skol");
+        values3.put("idImagem", R.drawable.skol);
+
+        ContentValues values4 = new ContentValues();
+        values4.put("nome", "Budweiser");
+        values4.put("idImagem", R.drawable.budweiser);
+
+        database.insert("produto", null, values);
+        database.insert("produto", null, values1);
+        database.insert("produto", null, values2);
+        database.insert("produto", null, values3);
+        database.insert("produto", null, values4);
     }
 
     /**
