@@ -42,4 +42,17 @@
         android:textSize="17dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginBottom="24dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_bares"
+        app:layout_constraintEnd_toEndOf="@+id/rv_bares"
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:tint="#FAFAFA"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

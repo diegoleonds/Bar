@@ -37,7 +37,7 @@ public class Model {
 
     public List<Bar> getBares(){
 
-        return barDAO.meDAOsBar();
+        return barDAO.meDAOsBares();
     }
 
     public void deleteBar(Bar b) {

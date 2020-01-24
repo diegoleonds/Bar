@@ -40,7 +40,7 @@ public class BarDAO {
                 String[]{bar.getId().toString()});
     }
 
-    public List<Bar> meDAOsBar () {
+    public List<Bar> meDAOsBares() {
 
         List<Bar> bar = new ArrayList<>();
 
@@ -56,6 +56,26 @@ public class BarDAO {
             bar.add(b);
         }
         return bar;
+    }
+
+    public Bar meDAOBar(String id){
+
+        String selection = "id" + " = ?";
+
+        String[] selectionArgs = {id};
+
+        Cursor cursor = dados.query("bar",new String[]{"id", "nome", "endereco","classificacao"},
+                selection, selectionArgs, null, null, null);
+
+        while (cursor.moveToNext()){
+            Bar b = new Bar();
+            b.setId(cursor.getInt(0));
+            b.setNome(cursor.getString(1));
+            b.setEndereco(cursor.getString(2));
+            b.setClassificacao(cursor.getDouble(3));
+            return b;
+        }
+        return null;
     }
 
     public void excluir(Bar b) {

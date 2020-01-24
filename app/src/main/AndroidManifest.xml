@@ -10,19 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         
-        <activity android:name=".view.CadastroBarsActivity"/>
+
+        <activity android:name=".view.CadastroBars"/>
         <activity android:name=".view.BarActivity"/>
         <activity android:name=".view.MainActivity"/>
-        <activity android:name=".MainActivity"/>
         <activity android:name=".view.FireBaseUIActivity">
-          
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
           
         </activity>
-        
+          
     </application>
 
 </manifest>

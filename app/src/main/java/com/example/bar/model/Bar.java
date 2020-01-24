@@ -26,13 +26,13 @@ public class Bar {
     public Float getClassificacaoAsFloat()  {
         return classificacao.floatValue();
     }
-    public void setClassificacaoAsFloat(Float a) {
-        this.classificacao = a.doubleValue();
 
-    }
+    public void setClassificacaoAsFloat(Float a) { this.classificacao = a.doubleValue(); }
+
     public Double getClassificacao()  {
         return classificacao;
     }
+
     public void setClassificacao(Double classificacao) {
         this.classificacao = classificacao;
     }
