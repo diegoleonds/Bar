@@ -3,10 +3,15 @@ package com.example.bar.controller;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
+import android.widget.Adapter;
 import com.example.bar.model.Bar;
+import com.example.bar.model.Item;
+import com.example.bar.model.BarDAO;
 import com.example.bar.model.Model;
 import com.example.bar.view.BarActivity;
+import com.example.bar.view.CadastroBars;
+
+import java.util.ArrayList;
 
 public class Controller {
 
@@ -29,23 +34,49 @@ public class Controller {
         model.insertBar(bar);
     }
 
+    public void getBares(AdapterBares bars){
+
+        BarDAO barsDao = new BarDAO(context);
+
+        ArrayList<Bar> aux = new ArrayList<Bar>();
+        aux.addAll(barsDao.meDAOsBares());
+        bars.setBares(aux);
+        bars.notifyDataSetChanged();
+    }
+
+    public void abrirCadastro(){
+
+        Intent intent = new Intent(context, CadastroBars.class);
+        context.startActivity(intent);
+
+    }
+
     public Click clicouNoBar(){
 
         return new Click() {
             @Override
             public void clicou(Integer id) {
 
-                /*
                 Bundle b = new Bundle();
                 b.putInt("id", id);
-                 */
+
 
                 Intent i = new Intent(context, BarActivity.class);
-                //i.putExtras(b);
+                i.putExtras(b);
 
                 context.startActivity(i);
             }
         };
+    }
+
+    public void insertItem(Item item){
+
+        model.insertItem(item);
+    }
+
+    public void listarItensDobar(String fkBar, AdapterProdutos adapterProdutos){
+
+
     }
 
     public Click clicouNoProduto(){

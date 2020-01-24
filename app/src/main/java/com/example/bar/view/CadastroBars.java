@@ -14,7 +14,7 @@ import com.example.bar.R;
 import com.example.bar.model.Bar;
 import com.example.bar.model.BarDAO;
 
-public class CadastroBarsActivity extends AppCompatActivity {
+public class CadastroBars extends AppCompatActivity {
 
     private BarDAO barDAO;
     private EditText nomeBar;
@@ -41,8 +41,9 @@ public class CadastroBarsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cadastraBar();
-                Toast.makeText(CadastroBarsActivity.this,""+nomeBar.getText().toString()+" cadastrado",Toast.LENGTH_SHORT).show();
-                Toast.makeText(CadastroBarsActivity.this, String.valueOf(classifica.getRating()),Toast.LENGTH_SHORT).show();
+                Toast.makeText(CadastroBars.this,"0 "+nomeBar.getText().toString()+" foi cadastrado",Toast.LENGTH_SHORT).show();
+
+                finish();
             }
 
         });

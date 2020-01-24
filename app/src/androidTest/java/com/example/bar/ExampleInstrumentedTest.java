@@ -60,7 +60,7 @@ public class ExampleInstrumentedTest {
         }
 
         ArrayList<Bar> meDAOsBares =
-                new ArrayList<Bar>(barDAO.meDAOsBar());
+                new ArrayList<Bar>(barDAO.meDAOsBares());
 
         int index = 1;
 
