@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         
 
-        <activity android:name=".view.CadastroBarsActivity"/>
+        <activity android:name=".view.CadastroBars"/>
         <activity android:name=".view.BarActivity"/>
         <activity android:name=".view.MainActivity"/>
         <activity android:name=".view.FireBaseUIActivity">
