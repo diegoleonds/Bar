@@ -31,7 +31,6 @@ public class Controller {
         bars.notifyDataSetChanged();
     }
 
-//mmm
     public void abrirCadastro(){
 
         Intent intent = new Intent(context, CadastroBars.class);
