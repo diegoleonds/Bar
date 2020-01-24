@@ -15,9 +15,11 @@ import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Geocoder;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.ResultReceiver;
+import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -73,8 +75,9 @@ public class ProjetoMapasActivity extends AppCompatActivity implements OnMapRead
     PlacesClient placesClient;
     AutocompleteSessionToken token;
     int result;
-    private boolean perguntar = true;
+    private boolean permissao = false;
     AlertDialog dialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,25 +99,24 @@ public class ProjetoMapasActivity extends AppCompatActivity implements OnMapRead
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == MY_LOCATION_REQUEST_CODE) {
-            perguntar = false;
             if (permissions.length == 1 &&
                     permissions[0] == Manifest.permission.ACCESS_FINE_LOCATION &&
                     grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Log.e("aaaaaaaaaaaaa", "cheguei");
 
-            } else {
-                Toast.makeText(this, "permissão negada", Toast.LENGTH_LONG);
-                Log.e("aaaaaaaaaaaaa", "cheguei2");
             }
         }
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-        mMap.setMinZoomPreference(6.0f);
-        mMap.setMaxZoomPreference(20.0f);
-        mMap.getUiSettings().setMyLocationButtonEnabled(true);
+        if(permissao) {
+            mMap = googleMap;
+            mMap.setMinZoomPreference(6.0f);
+            mMap.setMaxZoomPreference(20.0f);
+            mMap.setMyLocationEnabled(true);
+            mMap.getUiSettings().setMyLocationButtonEnabled(true);
+        }
     }
 
     @Override
@@ -122,13 +124,12 @@ public class ProjetoMapasActivity extends AppCompatActivity implements OnMapRead
         super.onResume();
         result = ActivityCompat.checkSelfPermission(ProjetoMapasActivity.this, Manifest.permission.ACCESS_FINE_LOCATION);
         if (result != PackageManager.PERMISSION_GRANTED) {
-
             dialog = showDialog();
             dialog.show();
-
         }
         if (result == PackageManager.PERMISSION_GRANTED) {
             resumeMap();
+
         }
     }
 
@@ -138,7 +139,8 @@ public class ProjetoMapasActivity extends AppCompatActivity implements OnMapRead
         builder.setMessage("Precisamos de acesso a sua localização para funcionar")
                 .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        ActivityCompat.requestPermissions(ProjetoMapasActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_LOCATION_REQUEST_CODE);
+                        startActivity(new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                                Uri.fromParts("package", getPackageName(), null)));
                     }
                 })
                 .setNegativeButton("Não", new DialogInterface.OnClickListener() {
@@ -150,7 +152,7 @@ public class ProjetoMapasActivity extends AppCompatActivity implements OnMapRead
     }
 
     private void resumeMap() {
-        mMap.setMyLocationEnabled(true);
+        permissao = true;
         int errorCode = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this);
         switch (errorCode) {
             case ConnectionResult.SERVICE_MISSING:
@@ -184,11 +186,11 @@ public class ProjetoMapasActivity extends AppCompatActivity implements OnMapRead
                         public void onCameraIdle() {
                             FindAutocompletePredictionsRequest predictionsRequest = FindAutocompletePredictionsRequest.builder()
                                     .setCountry("BR")
-                                    .setTypeFilter(TypeFilter.ESTABLISHMENT)
+                                    .setTypeFilter(TypeFilter.ADDRESS)
                                     .setSessionToken(token).setLocationRestriction(RectangularBounds.newInstance(
                                             mMap.getProjection().getVisibleRegion().latLngBounds
                                     ))
-                                    .setQuery("posto").build();
+                                    .setQuery("Rua").build();
 
 
                             placesClient.findAutocompletePredictions(predictionsRequest).addOnCompleteListener(new OnCompleteListener<FindAutocompletePredictionsResponse>() {
