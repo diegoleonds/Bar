@@ -19,7 +19,10 @@
 
         <activity android:name=".view.BarActivity" />
         <activity android:name=".view.MainActivity" />
+        <activity android:name=".view.CadastroBars"/>
         <activity android:name=".view.FireBaseUIActivity">
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

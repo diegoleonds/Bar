@@ -24,6 +24,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
+import com.example.bar.model.Bar;
+import com.example.bar.model.BarDAO;
 import com.example.bar.view.Constants;
 import com.example.bar.view.FetchAddressService;
 import com.example.bar.view.MainActivity;
@@ -63,6 +65,7 @@ import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRe
 import com.google.android.libraries.places.api.net.FindAutocompletePredictionsResponse;
 import com.google.android.libraries.places.api.net.PlacesClient;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -77,6 +80,10 @@ public class ProjetoMapasActivity extends AppCompatActivity implements OnMapRead
     int result;
     private boolean permissao = false;
     AlertDialog dialog;
+    FindAutocompletePredictionsRequest predictionsRequest;
+    BarDAO bar;
+    private List<Bar> bares;
+    private ArrayList<Bar> baresFiltrados = new ArrayList<>();
 
 
     @Override
@@ -89,7 +96,9 @@ public class ProjetoMapasActivity extends AppCompatActivity implements OnMapRead
         mapFragment.getMapAsync(this);
         client = LocationServices.getFusedLocationProviderClient(this);
         resultReceiver = new AddressResultReceiver(null);
-
+        bar = new BarDAO(this);
+        bares = bar.meDAOsBares();
+        baresFiltrados.addAll(bares);
         String apikey = Constants.API_PLACES_KEY;
         Places.initialize(getApplicationContext(), apikey);
         placesClient = Places.createClient(this);
@@ -110,7 +119,7 @@ public class ProjetoMapasActivity extends AppCompatActivity implements OnMapRead
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        if(permissao) {
+        if (permissao) {
             mMap = googleMap;
             mMap.setMinZoomPreference(6.0f);
             mMap.setMaxZoomPreference(20.0f);
@@ -184,14 +193,19 @@ public class ProjetoMapasActivity extends AppCompatActivity implements OnMapRead
                     mMap.setOnCameraIdleListener(new GoogleMap.OnCameraIdleListener() {
                         @Override
                         public void onCameraIdle() {
-                            FindAutocompletePredictionsRequest predictionsRequest = FindAutocompletePredictionsRequest.builder()
-                                    .setCountry("BR")
-                                    .setTypeFilter(TypeFilter.ADDRESS)
-                                    .setSessionToken(token).setLocationRestriction(RectangularBounds.newInstance(
-                                            mMap.getProjection().getVisibleRegion().latLngBounds
-                                    ))
-                                    .setQuery("Rua").build();
+                            String endereco;
+                            for (int i = 0; i < baresFiltrados.size(); i++) {
+                                endereco = baresFiltrados.get(i).getEndereco();
 
+
+                                predictionsRequest = FindAutocompletePredictionsRequest.builder()
+                                        .setCountry("BR")
+                                        .setTypeFilter(TypeFilter.ADDRESS)
+                                        .setSessionToken(token).setLocationRestriction(RectangularBounds.newInstance(
+                                                mMap.getProjection().getVisibleRegion().latLngBounds
+                                        ))
+                                        .setQuery(endereco).build();
+                            }
 
                             placesClient.findAutocompletePredictions(predictionsRequest).addOnCompleteListener(new OnCompleteListener<FindAutocompletePredictionsResponse>() {
                                 @Override
