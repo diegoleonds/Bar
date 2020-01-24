@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.RatingBar;
+
 import com.example.bar.R;
 import com.example.bar.model.Bar;
 import com.example.bar.model.BarDAO;  
@@ -16,12 +18,14 @@ public class BarActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private AdapterProdutos adapterProdutos;
     private Controller controller;
+    private RatingBar estrelas;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bar);
+        estrelas = findViewById(R.id.estrelas);
       
         extra = getIntent().getExtras();
 
@@ -31,6 +35,7 @@ public class BarActivity extends AppCompatActivity {
         Bar bar = barDAO.meDAOBar(id);
 
         setTitle(bar.getNome());
+        estrelas.setRating(bar.getClassificacaoAsFloat());
 
         int idBar = getIntent().getIntExtra("id", 1);
 
