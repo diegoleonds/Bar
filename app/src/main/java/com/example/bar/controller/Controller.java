@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.bar.model.Bar;
+import com.example.bar.model.Item;
 import com.example.bar.model.Model;
 import com.example.bar.view.BarActivity;
 
@@ -35,17 +36,27 @@ public class Controller {
             @Override
             public void clicou(Integer id) {
 
-                /*
+
                 Bundle b = new Bundle();
                 b.putInt("id", id);
-                 */
+
 
                 Intent i = new Intent(context, BarActivity.class);
-                //i.putExtras(b);
+                i.putExtras(b);
 
                 context.startActivity(i);
             }
         };
+    }
+
+    public void insertItem(Item item){
+
+        model.insertItem(item);
+    }
+
+    public void listarItensDobar(String fkBar, AdapterProdutos adapterProdutos){
+
+
     }
 
     public Click clicouNoProduto(){

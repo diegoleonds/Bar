@@ -8,11 +8,26 @@ public class Model {
 
     private BarDAO barDAO;
     private ProdutoDAO produtoDAO;
+    private ItemDAO itemDAO;
 
     public Model(Context context){
 
         barDAO = new BarDAO(context);
         produtoDAO = new ProdutoDAO(context);
+        itemDAO = new ItemDAO(context);
+    }
+
+    public static String getValorFormatado(Context context, String fkBar, String idProduto){
+
+        Conexao conexao = new Conexao(context);
+        ItemDAO itemDAO = new ItemDAO(context);
+
+        String r;
+        Item i = itemDAO.getItem(fkBar, idProduto);
+
+        r = String.valueOf(i.getPreco());
+
+        return r;
     }
 
     public long insertBar(Bar bar){
@@ -38,5 +53,15 @@ public class Model {
     public List getProdutos(){
 
         return produtoDAO.getProdutos();
+    }
+
+    public void insertItem(Item item){
+
+        itemDAO.insertItem(item);
+    }
+
+    public List<Item> getItensDoBar(String fkBar){
+
+        return itemDAO.getItensDoBar(fkBar);
     }
 }

@@ -21,8 +21,10 @@ public class BarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bar);
 
+        int idBar = getIntent().getIntExtra("id", 1);
+
         recyclerView = new RecyclerView(this);
-        adapterProdutos = new AdapterProdutos(this);
+        adapterProdutos = new AdapterProdutos(this, String.valueOf(idBar));
         controller = new Controller(this);
 
         recyclerView.setAdapter(adapterProdutos);
