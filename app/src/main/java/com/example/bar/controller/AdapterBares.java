@@ -26,10 +26,6 @@ public class AdapterBares extends RecyclerView.Adapter<AdapterBares.BaresViewHol
         this.c = c;
 
         this.click = click;
-
-        Bar bar = new Bar();
-        bar.setNome("Bar do Juka");
-        bares.add(bar);
     }
 
     @NonNull
