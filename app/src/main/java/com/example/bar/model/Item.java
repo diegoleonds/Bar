@@ -16,6 +16,7 @@ public class Item {
 
     public Item(){
 
+        preco = 0.0;
     }
 
     public Integer getId() {

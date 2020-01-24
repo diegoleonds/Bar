@@ -1,6 +1,8 @@
 package com.example.bar.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
@@ -11,22 +13,45 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bar.R;
+import com.example.bar.controller.AdapterProdutos;
+import com.example.bar.controller.Controller;
 import com.example.bar.model.Bar;
 import com.example.bar.model.BarDAO;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class CadastroBars extends AppCompatActivity {
 
     private BarDAO barDAO;
     private EditText nomeBar;
     private EditText enderecoBar;
-    private Button btnAdcBar;
+    private FloatingActionButton btnAdcBar;
     private RatingBar classifica;
     private TextView txtValorClassificacao;
+    private Controller controller;
+
+    private int idLivre;
+    private RecyclerView rv;
+    private AdapterProdutos adapterProdutos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_bars);
+        setTitle("Cadastro");
+
+        rv = findViewById(R.id.rv_cadastro);
+        controller = new Controller(this);
+
+        idLivre = getIntent().getIntExtra("idLivre", 1);
+
+        adapterProdutos = new AdapterProdutos(this,
+                controller.clicouNoProduto(), idLivre);
+
+
+        rv.setAdapter(adapterProdutos);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+
+        controller.listaProdutos(adapterProdutos);
 
         nomeBar = findViewById(R.id.Nome);
         enderecoBar = findViewById(R.id.Endereco);

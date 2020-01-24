@@ -21,13 +21,13 @@ public class Model {
 
         Conexao conexao = new Conexao(context);
         ItemDAO itemDAO = new ItemDAO(context);
-
-        String r;
+        
         Item i = itemDAO.getItem(fkBar, idProduto);
 
-        r = String.valueOf(i.getPreco());
+        if (i != null)
+            return String.valueOf(i.getPreco());
 
-        return r;
+        return "0.0";
     }
 
     public long insertBar(Bar bar){
@@ -63,5 +63,11 @@ public class Model {
     public List<Item> getItensDoBar(String fkBar){
 
         return itemDAO.getItensDoBar(fkBar);
+    }
+
+    public Item getItem(Integer id){
+
+        String aux = String.valueOf(id);
+        return itemDAO.getItem(aux);
     }
 }

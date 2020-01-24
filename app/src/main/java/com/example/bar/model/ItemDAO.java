@@ -17,7 +17,7 @@ public class ItemDAO {
     private SQLiteDatabase database;
 
     private final String[] colunas = new String[]{"id", "fkBar", "fkProduto", "preco"};
-    private final String tabela = "item";
+    private final String tabela = "valores";
 
     public ItemDAO(Context context){
 
