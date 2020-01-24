@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.example.bar.ProjetoMapasActivity;
 import com.example.bar.R;
 import com.example.bar.controller.AdapterBares;
 import com.example.bar.controller.Controller;
@@ -53,6 +55,11 @@ public class MainActivity extends AppCompatActivity {
         abrir();
         controller.getBares(adapterBares);
 
+    }
+
+    public void testeMapa(View view){
+        Intent i = new Intent(this, ProjetoMapasActivity.class);
+        startActivity(i);
     }
 
 }

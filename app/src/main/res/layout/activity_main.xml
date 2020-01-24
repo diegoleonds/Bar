@@ -55,4 +55,16 @@
         app:layout_constraintEnd_toEndOf="@+id/rv_bares"
         app:srcCompat="@android:drawable/ic_input_add"
         android:tint="#FAFAFA"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="89dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="92dp"
+        android:text="Button"
+        android:onClick="testeMapa"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.785"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
