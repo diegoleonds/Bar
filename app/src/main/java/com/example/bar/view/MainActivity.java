@@ -34,11 +34,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void abrir(){
+
+        final int idLivre = controller.getIdLivre();
+
         fabiCadastro = findViewById(R.id.floatAdd);
         fabiCadastro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                controller.abrirCadastro();
+
+                Intent intent = new Intent(fabiCadastro.getContext(), CadastroBars.class);
+                intent.putExtra("idLivre", idLivre);
+
+                startActivity(intent);
             }
         });
     }
@@ -50,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
         adapterBares = new AdapterBares(this, controller.clicouNoBar());
 
         rv.setAdapter(adapterBares);
-        Log.e("aaaaaaaaaa", adapterBares.toString());
         rv.setLayoutManager(new LinearLayoutManager(this));
         abrir();
         controller.getBares(adapterBares);

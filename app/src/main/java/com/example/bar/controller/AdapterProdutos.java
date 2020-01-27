@@ -22,6 +22,9 @@ public class AdapterProdutos extends RecyclerView.Adapter<AdapterProdutos.Produt
     private Context context;
     private String fkBar;
 
+    private Click click;
+    private int idLivre;
+
     public AdapterProdutos(Context context, String fkBar){
 
         this.context = context;
@@ -29,6 +32,18 @@ public class AdapterProdutos extends RecyclerView.Adapter<AdapterProdutos.Produt
         produtos = new ArrayList<Produto>();
         this.fkBar = fkBar;
     }
+
+    public AdapterProdutos(Context context, Click click, int idLivre){
+
+        this.context = context;
+
+        produtos = new ArrayList<Produto>();
+        this.fkBar = null;
+
+        this.idLivre = idLivre;
+        this.click = click;
+    }
+
 
     @NonNull
     @Override
@@ -48,13 +63,16 @@ public class AdapterProdutos extends RecyclerView.Adapter<AdapterProdutos.Produt
 
         holder.nome.setText(aux.getNome());
 
-        holder.preco.setText(Model.getValorFormatado(context, fkBar,
+        if (fkBar != null)
+            holder.preco.setText(Model.getValorFormatado(context, fkBar,
                 String.valueOf(aux.getId())));
 
         holder.foto.setImageResource(aux.getIdImagem());
     }
 
     ArrayList<Produto> getProdutos() { return this.produtos; }
+
+    void setProdutos(ArrayList<Produto> produtos) { this.produtos = produtos; }
 
     @Override
     public int getItemCount() {
@@ -73,8 +91,17 @@ public class AdapterProdutos extends RecyclerView.Adapter<AdapterProdutos.Produt
             super(itemView);
 
             this.nome = itemView.findViewById(R.id.nome_item_produto);
-            this.preco = itemView.findViewById(R.id.foto_produto);
-            this.foto = itemView.findViewById(R.id.preco_produto);
+            this.preco = itemView.findViewById(R.id.preco_produto);
+            this.foto = itemView.findViewById(R.id.foto_produto);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if (click != null)
+                        click.clicou(produtos.get(getAdapterPosition()).getId(), idLivre, preco);
+                }
+            });
         }
 
         public TextView getNome() {

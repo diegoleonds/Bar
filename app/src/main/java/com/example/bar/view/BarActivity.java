@@ -39,20 +39,15 @@ public class BarActivity extends AppCompatActivity {
 
         int idBar = getIntent().getIntExtra("id", 1);
 
-        recyclerView = new RecyclerView(this);
+        recyclerView = findViewById(R.id.rv_produto);
         adapterProdutos = new AdapterProdutos(this, String.valueOf(idBar));
+
         controller = new Controller(this);
 
         recyclerView.setAdapter(adapterProdutos);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
 
         controller.listaProdutos(adapterProdutos);
-
     }
 
 }
