@@ -21,7 +21,7 @@ public class Model {
 
         Conexao conexao = new Conexao(context);
         ItemDAO itemDAO = new ItemDAO(context);
-        
+
         Item i = itemDAO.getItem(fkBar, idProduto);
 
         if (i != null)
