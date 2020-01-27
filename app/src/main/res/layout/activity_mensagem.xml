@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.bar.view.BarActivity">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Compartilhar SMSBar"
+        android:textSize="30dp"
+        app:fontFamily="@font/margarine" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_alignEnd="@+id/imageButton"
+        android:layout_alignRight="@+id/imageButton"
+        android:layout_marginTop="-2dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
+        android:text="DeBar EmBar "
+        android:textColor="#684113"
+        android:textSize="30dp"
+        app:fontFamily="@font/aclonica" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="409dp"
+        android:layout_height="433dp"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/imgsms" />
+
+    <EditText
+        android:id="@+id/etNumero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageButton"
+        android:layout_centerHorizontal="true"
+        android:hint="Inserir Numero"
+        android:phoneNumber="true"
+        android:text="+5547997128847"
+        android:textColorHint="@color/abc_primary_text_material_dark" />
+
+    <EditText
+        android:id="@+id/etSMS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etNumero"
+        android:layout_alignStart="@+id/etNumero"
+        android:layout_alignLeft="@+id/etNumero"
+        android:layout_alignEnd="@+id/imageButton"
+        android:layout_alignRight="@+id/imageButton"
+        android:hint="Inserir SMS"
+        android:text="Oi Seu liMdo"
+        android:textColorHint="@color/abc_primary_text_material_dark" />
+
+    <Button
+        android:id="@+id/bttEnviar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etSMS"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp"
+        android:text="Enviar SMS" />
+
+</RelativeLayout>
