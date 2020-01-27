@@ -41,12 +41,14 @@ public class SMSBar extends Activity {
     }
 
     protected void sendSMSMensagem() {
+
         phoneNo = txtnCelular.getText().toString();
         message = txtMensagem.getText().toString();
 
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.SEND_SMS)
-                != PackageManager.PERMISSION_GRANTED) {
+                != PackageManager.PERMISSION_GRANTED)
+        {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.SEND_SMS)) {
             } else {
