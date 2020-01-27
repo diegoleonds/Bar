@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".view.Mensagem"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -28,7 +29,7 @@
         </activity>
         <activity android:name=".ProjetoMapasActivity" />
 
-        <service android:name=".view.FetchAddressService"></service>
+        <service android:name=".view.FetchAddressService" />
     </application>
 
 </manifest>
