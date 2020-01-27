@@ -1,13 +1,13 @@
 package com.example.bar.view;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 
 import com.example.bar.ProjetoMapasActivity;
 import com.example.bar.R;
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private AdapterBares adapterBares;
     private Controller controller;
     private FloatingActionButton fabiCadastro;
-
+    private Button btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,18 @@ public class MainActivity extends AppCompatActivity {
 
         rv = findViewById(R.id.rv_bares);
         controller = new Controller(this);
+
+        btn = findViewById(R.id.btnmensagem);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(btn.getContext(), Mensagem.class);
+
+                startActivity(intent);
+            }
+        });
 
     }
 

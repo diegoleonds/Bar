@@ -28,7 +28,7 @@ public class Mensagem extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sms);
+        setContentView(R.layout.activity_mensagem);
 
         enviarBtt= (Button) findViewById(R.id.bttEnviar);
         txtnCelular = (EditText) findViewById(R.id.etNumero);
@@ -36,6 +36,7 @@ public class Mensagem extends Activity {
 
         enviarBtt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+
                 sendSMSMensagem();
             }
         });

@@ -4,10 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.bar.view.BarActivity">
 
     <TextView
@@ -45,26 +41,28 @@
         android:src="@drawable/imgsms" />
 
     <EditText
+        android:id="@+id/etNumero"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/etNumero"
+        android:layout_below="@+id/imageButton"
+        android:layout_centerHorizontal="true"
         android:hint="Inserir Numero"
         android:phoneNumber="true"
-        android:textColorHint="@color/abc_primary_text_material_dark"
-        android:layout_below="@+id/imageButton"
-        android:layout_centerHorizontal="true" />
+        android:text="+5547997128847"
+        android:textColorHint="@color/abc_primary_text_material_dark" />
 
     <EditText
+        android:id="@+id/etSMS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/etSMS"
         android:layout_below="@+id/etNumero"
-        android:layout_alignLeft="@+id/etNumero"
         android:layout_alignStart="@+id/etNumero"
-        android:textColorHint="@color/abc_primary_text_material_dark"
-        android:layout_alignRight="@+id/imageButton"
+        android:layout_alignLeft="@+id/etNumero"
         android:layout_alignEnd="@+id/imageButton"
-        android:hint="Inserir SMS" />
+        android:layout_alignRight="@+id/imageButton"
+        android:hint="Inserir SMS"
+        android:text="Oi Seu liMdo"
+        android:textColorHint="@color/abc_primary_text_material_dark" />
 
     <Button
         android:id="@+id/bttEnviar"
